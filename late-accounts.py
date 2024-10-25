@@ -245,9 +245,9 @@ def create_html(late_plcs, issuers, html_export_file, number_of_active_plcs):
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" integrity="sha512-AN3IrhZkJZng0O9tz6RmfjbiX7UXVeusGfXKsVF7+wbRdqLH/kLy/0ljkUsNzXVFGx6vV1Bo9+9JK8DN+dRvZw==" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" integrity="sha512-BXI7AVpebJuMa1fHXyAAVMgPki/JF/IiXpIkWPX0+L4kCxCiZV8Fxkbk0+DdxuIzAg486Oij/MlW+b0q6A98aw==" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous">
         <title>Late Filings</title>
         <style>
             .container {
@@ -286,9 +286,9 @@ def create_html(late_plcs, issuers, html_export_file, number_of_active_plcs):
             </table>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" integrity="sha512-ONQixi38lWHD4KDFx/xLD01RI31TOTJ1pTSOXPaYOQ+YCurDIklLP5SwweVTSM99P6hZdIQx85hSuY3n/Sl/IQ==" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js" integrity="sha512-KFdmxVdAssPxrj4mZh1c01AbGXMAmXmBsO4Tc/GG5+kNLqitTfUBpDHicyDwF7CaFV+pN1r808IOK+vHzWB8gw==" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function() {
                 $('#latePlcsTable').DataTable({
