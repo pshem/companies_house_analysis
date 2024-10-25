@@ -7,6 +7,8 @@
 
 # 
 
+import argparse
+import sys
 import os
 import time
 import requests
@@ -24,7 +26,7 @@ import companies_house_secrets
 companies_house_secrets.py should have the following format:
 
     api_key = "<your api key>" 
-    companies_house_secrets.upload_directory = None [if you don't want to upload the html to a website] or scp destination, if you do
+    upload_directory = None [if you don't want to upload the html to a website] or scp destination, if you do
 
 instructions for obtaining a Companies House api key are at https://developer-specs.company-information.service.gov.uk/guides/authorisation
 
@@ -329,7 +331,7 @@ def create_html(late_plcs, issuers, html_export_file, number_of_active_plcs):
 
 
 
-if __name__ == "__main__":
+def main(generate: bool, analyse: bool):
     
     logzero.logfile(LOGFILE, maxBytes=1e6, backupCount=4)
     
@@ -339,7 +341,7 @@ if __name__ == "__main__":
         logger.info(f"Downloading {list} issuers")
         listed_companies.append(get_list_of_UK_issuers(source))    
 
-    if GENERATE_PLC_LIST:
+    if generate:
         logger.info("Reading list of all PLCs from Companies House")
         active_plcs = get_active_plcs()
         save_to_file(active_plcs, PLC_LIST_FILE)
@@ -349,7 +351,7 @@ if __name__ == "__main__":
         active_plcs = load_from_file(PLC_LIST_FILE)
     
     
-    if ANALYSE_PLC_LIST:
+    if analyse:
         logger.info(f"Checking through {len(active_plcs)} active PLCs:")  
         late_accounts, late_confirmations = get_late_plcs(active_plcs)
         save_to_file(late_accounts, LATE_ACCOUNTS_LIST_FILE)
@@ -371,4 +373,13 @@ if __name__ == "__main__":
         os.system(f'scp {CONFIRMATIONS_HTML_EXPORT_FILE} {companies_house_secrets.upload_directory}')
         
     logger.info("All done!")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--generate', action=argparse.BooleanOptionalAction, default=GENERATE_PLC_LIST,
+                        help=f"Default: {GENERATE_PLC_LIST}")
+    parser.add_argument('--analyse', action=argparse.BooleanOptionalAction, default=ANALYSE_PLC_LIST,
+                        help=f"Default: {ANALYSE_PLC_LIST}")
+    args = parser.parse_args(sys.argv[1:])
     
+    main(args.generate, args.analyse)
